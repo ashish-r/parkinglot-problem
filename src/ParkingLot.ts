@@ -17,10 +17,10 @@ export default class ParkingLot{
         }
         return nextSlot
     }
-    public park(car: ICar): boolean {
+    public park(car: ICar): number | void {
         const availableSlot = this._nextAvailableSlot as number
         if(availableSlot === undefined){
-            return false
+            return
         }
         this._carInfo[car.registrationNumber] = {
             colour: car.colour,
@@ -28,7 +28,7 @@ export default class ParkingLot{
         }
         this._slots[availableSlot] = {...car}
         this._nextAvailableSlot = this.getNextAvailableSlot(availableSlot)
-        return true
+        return availableSlot
     }
     public getIsAvailableParking(): boolean{
         return this._nextAvailableSlot !== undefined

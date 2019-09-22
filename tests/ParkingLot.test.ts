@@ -12,9 +12,9 @@ describe('when parking empty', () => {
             registrationNumber: 'KA-01-HH-1235',
             colour:  'White'
         }
-        expect(parkingLot.park(carOne)).toBe(true)
+        expect(parkingLot.park(carOne)).toBe(0)
         expect(parkingLot.getIsAvailableParking()).toBe(true)
-        expect(parkingLot.park(carTwo)).toBe(true)
+        expect(parkingLot.park(carTwo)).toBe(1)
         expect(parkingLot.getIsAvailableParking()).toBe(false)
 	})
 })
@@ -36,7 +36,7 @@ describe('when parking full', () => {
             registrationNumber: 'KA-01-HH-1234',
             colour:  'White'
         }
-        expect(parkingLot.park(carThree)).toBe(false)
+        expect(parkingLot.park(carThree)).toBeUndefined()
         expect(parkingLot.getIsAvailableParking()).toBe(false)
 	})
 })

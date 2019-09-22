@@ -1,0 +1,29 @@
+{
+  "name": "parking_lot_gojek",
+  "version": "1.0.0",
+  "description": "parking lot problem solution from gojek",
+  "main": "index.js",
+  "scripts": {
+    "parking-lot": "./node_modules/ts-node/dist/bin.js src/index.ts",
+    "test": "jest"
+  },
+  "author": "Ashish Ranjan",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.5",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {},
+  "jest": {
+    "roots": [
+      "<rootDir>/tests"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  }
+}

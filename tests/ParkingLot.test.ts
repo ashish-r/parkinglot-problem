@@ -7,7 +7,7 @@ const carOne: ICar = {
 }
 const carTwo: ICar = {
     registrationNumber: 'KA-01-HH-1235',
-    colour:  'White'
+    colour:  'Red'
 }
 const carThree: ICar = {
     registrationNumber: 'KA-01-HH-1234',
@@ -16,7 +16,15 @@ const carThree: ICar = {
 
 describe('when parking empty', () => {
     const parkingLot = new ParkingLot(2)
+    test('getCarSlot', () => {
+        expect(parkingLot.getCarSlotForRegistrationNumber('randomReg')).toBeUndefined()
+        expect(parkingLot.getCarsSlotBasedOnColour('White')).toBeUndefined()
+    })
+    test('getAllParkedCars', () => {
+        expect(parkingLot.getAllParkedCars().length).toBe(0)
+    })
 	test('park', () => {
+        expect(parkingLot.getIsAvailableParking()).toBe(true)
         expect(parkingLot.park(carOne)).toBe(0)
         expect(parkingLot.getIsAvailableParking()).toBe(true)
         expect(parkingLot.park(carTwo)).toBe(1)
@@ -33,9 +41,16 @@ describe('when parking full', () => {
     const parkingLot = new ParkingLot(2)
     parkingLot.park(carOne)
     parkingLot.park(carTwo)
+    test('getCarSlot', () => {
+        expect(parkingLot.getCarSlotForRegistrationNumber('KA-01-HH-1234')).toBe(0)
+        expect(parkingLot.getCarsSlotBasedOnColour('White')).toBeTruthy()
+    })
+    test('getAllParkedCars', () => {
+        expect(parkingLot.getAllParkedCars().length).toBe(2)
+    })
 	test('park', () => {
-        expect(parkingLot.park(carThree)).toBeUndefined()
         expect(parkingLot.getIsAvailableParking()).toBe(false)
+        expect(parkingLot.park(carThree)).toBeUndefined()
     })
     test('leave', () => {
         expect(parkingLot.leave(3)).toBe(false)

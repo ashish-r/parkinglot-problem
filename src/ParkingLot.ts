@@ -1,9 +1,10 @@
-import { ICar, IParkedVehicles } from "./interface/interfacePool";
+import { ICar} from "./interface/interfacePool";
 
 export default class ParkingLot{
     private _totalSlots: number
     private _slots: Array<ICar> = []
-    private _carInfo: IParkedVehicles = {}
+    private _carsRegSlot: {[registrationNumber: string]: number} = {}
+    private _carsColourSlot: {[colour: string]: Array<number>} = {}
     private _nextAvailableSlot: number | undefined = 0
     constructor(totalSlots: number){
         this._totalSlots = totalSlots
@@ -20,11 +21,9 @@ export default class ParkingLot{
         if(availableSlot === undefined){
             return
         }
-        this._carInfo[car.registrationNumber] = {
-            colour: car.colour,
-            slot: availableSlot
-        }
+        this._carsRegSlot[car.registrationNumber] = availableSlot
         this._slots[availableSlot] = {...car}
+        this._carsColourSlot[car.colour] = [availableSlot, ...(this._carsColourSlot[car.colour] || [])]
         this._nextAvailableSlot = this.getNextAvailableSlot(availableSlot)
         return availableSlot
     }
@@ -36,12 +35,26 @@ export default class ParkingLot{
             return false
         }
         const carToLeve = this._slots[slot]
+        this._carsColourSlot[carToLeve.colour] = this._carsColourSlot[carToLeve.colour].filter(
+                x => x!== slot
+            )
         this._nextAvailableSlot = (
                 this._nextAvailableSlot === undefined || 
                 slot < this._nextAvailableSlot
             ) ? 
             slot : 
             this._nextAvailableSlot
-        return delete this._slots[slot] && delete this._carInfo[carToLeve.registrationNumber]
+        return delete this._slots[slot] && delete this._carsRegSlot[carToLeve.registrationNumber]
+    }
+    public getAllParkedCars(){
+        return Object.values(this._carsRegSlot).map(
+            (slot) => ({slot, ...this._slots[slot]})
+        )
+    }
+    public getCarSlotForRegistrationNumber(regNo: string): number | void {
+        return this._carsRegSlot[regNo]
+    }
+    public getCarsSlotBasedOnColour(colour: string): number[] | void{
+        return this._carsColourSlot[colour]
     }
 }

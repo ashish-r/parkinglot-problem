@@ -20,7 +20,12 @@ function promptCli() {
         terminal: false,
     })
     prompts.question('', function(data: string) {
-        console.log(inputProcessor(data))
-        promptCli()
+        if(data === 'exit'){
+            process.exit()
+        }
+        else{
+            console.log(inputProcessor(data))
+            promptCli()
+        }
     })
 }

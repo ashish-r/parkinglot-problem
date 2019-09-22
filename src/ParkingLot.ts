@@ -33,4 +33,17 @@ export default class ParkingLot{
     public getIsAvailableParking(): boolean{
         return this._nextAvailableSlot !== undefined
     }
+    public leave(slot: number): boolean{
+        if((slot > this._totalSlots) || !this._slots[slot]){
+            return false
+        }
+        const carToLeve = this._slots[slot]
+        this._nextAvailableSlot = (
+                this._nextAvailableSlot === undefined || 
+                slot < this._nextAvailableSlot
+            ) ? 
+            slot : 
+            this._nextAvailableSlot
+        return delete this._slots[slot] && delete this._carInfo[carToLeve.registrationNumber]
+    }
 }

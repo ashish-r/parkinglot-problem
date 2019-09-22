@@ -1,42 +1,45 @@
 import ParkingLot from "../src/ParkingLot";
 import { ICar } from "../src/interface/interfacePool";
 
+const carOne: ICar = {
+    registrationNumber: 'KA-01-HH-1234',
+    colour:  'White'
+}
+const carTwo: ICar = {
+    registrationNumber: 'KA-01-HH-1235',
+    colour:  'White'
+}
+const carThree: ICar = {
+    registrationNumber: 'KA-01-HH-1234',
+    colour:  'White'
+}
+
 describe('when parking empty', () => {
     const parkingLot = new ParkingLot(2)
 	test('park', () => {
-        const carOne: ICar = {
-            registrationNumber: 'KA-01-HH-1234',
-            colour:  'White'
-        }
-        const carTwo: ICar = {
-            registrationNumber: 'KA-01-HH-1235',
-            colour:  'White'
-        }
         expect(parkingLot.park(carOne)).toBe(0)
         expect(parkingLot.getIsAvailableParking()).toBe(true)
         expect(parkingLot.park(carTwo)).toBe(1)
         expect(parkingLot.getIsAvailableParking()).toBe(false)
-	})
+    })
+    test('leave', () => {
+        expect(parkingLot.leave(0)).toBe(true)
+        expect(parkingLot.leave(1)).toBe(true)
+        expect(parkingLot.park(carThree)).toBe(0)
+    })
 })
 
 describe('when parking full', () => {
     const parkingLot = new ParkingLot(2)
-    const carOne: ICar = {
-        registrationNumber: 'KA-01-HH-1234',
-        colour:  'White'
-    }
-    const carTwo: ICar = {
-        registrationNumber: 'KA-01-HH-1235',
-        colour:  'White'
-    }
     parkingLot.park(carOne)
     parkingLot.park(carTwo)
 	test('park', () => {
-        const carThree: ICar = {
-            registrationNumber: 'KA-01-HH-1234',
-            colour:  'White'
-        }
         expect(parkingLot.park(carThree)).toBeUndefined()
         expect(parkingLot.getIsAvailableParking()).toBe(false)
-	})
+    })
+    test('leave', () => {
+        expect(parkingLot.leave(3)).toBe(false)
+        expect(parkingLot.leave(1)).toBe(true)
+        expect(parkingLot.park(carThree)).toBe(1)
+    })
 })

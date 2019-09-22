@@ -9,13 +9,11 @@ export default class ParkingLot{
         this._totalSlots = totalSlots
     }
     private getNextAvailableSlot(currentSlot: number): number | undefined{
-        let nextSlot
         for(let i = currentSlot; i < this._totalSlots; i++){
             if(!this._slots[i]){
-                nextSlot = i
+                return i
             }
         }
-        return nextSlot
     }
     public park(car: ICar): number | void {
         const availableSlot = this._nextAvailableSlot as number

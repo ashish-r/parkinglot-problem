@@ -1,6 +1,6 @@
 import { INPUTS } from './utils/constants'
 import ParkingLot from './ParkingLot'
-import { gridStringFromArrayOfObjects } from './utils/commonMethods'
+import { gridStringFromArrayOfObjects } from './utils/helpers'
 
 let PARKING_LOT: ParkingLot
 

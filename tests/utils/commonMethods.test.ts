@@ -1,4 +1,4 @@
-import { gridStringFromArrayOfObjects } from '../../src/utils/commonMethods'
+import { gridStringFromArrayOfObjects } from '../../src/utils/helpers'
 
 describe('gridStringFromArrayOfObjects', () => {
     test('empty array', () => {

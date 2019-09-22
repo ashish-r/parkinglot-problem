@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "parking-lot": "./node_modules/ts-node/dist/bin.js src/index.ts",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "author": "Ashish Ranjan",
   "license": "ISC",
@@ -24,6 +24,7 @@
     ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
-    }
+    },
+    "coverageDirectory": "<rootDir>/tests/coverageReport"
   }
 }

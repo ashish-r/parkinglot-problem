@@ -6,7 +6,7 @@ Requirements: node and npm
 
 # Install dependencies
 
-run setup inside bin it will install all required dependencies
+run `bash setup` inside bin or `npm install` it will install all required dependencies
 
 # Run
 

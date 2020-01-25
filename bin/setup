@@ -1,0 +1,18 @@
+#!/bin/sh
+# setup script to install dependecies and run unit tests
+# This variable contains absolute path of this `parking_lot` script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+cd $DIR
+echo +++++++++++++++++++++++++++++++++++++++++++++++++++
+echo adding dependencies from package.json
+echo +++++++++++++++++++++++++++++++++++++++++++++++++++
+npm install
+echo +++++++++++++++++++++++++++++++++++++++++++++++++++
+echo unit tests
+echo +++++++++++++++++++++++++++++++++++++++++++++++++++
+npm run test
+echo +++++++++++++++++++++++++++++++++++++++++++++++++++
+echo +++++++++++++++++++++++++++++++++++++++++++++++++++
+cd $DIR
+echo After this is run, bin/parking_lot
+echo will work!

@@ -10,7 +10,7 @@ run setup inside bin it will install all required dependencies
 
 # Run
 
-`run parking_lot` inside bin or `npm run parking-lot`
+run `bash parking_lot` inside bin or `npm run parking-lot`
 
 Optional argument of file name can be provided 
 

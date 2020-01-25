@@ -1,7 +1,7 @@
 {
-  "name": "parking_lot_gojek",
+  "name": "parking_lot_problem",
   "version": "1.0.0",
-  "description": "parking lot problem solution from gojek",
+  "description": "parking lot problem solution",
   "main": "index.js",
   "scripts": {
     "parking-lot": "./node_modules/ts-node/dist/bin.js src/index.ts",

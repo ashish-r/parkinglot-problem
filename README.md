@@ -1,3 +1,4 @@
+[![DeepScan grade](https://deepscan.io/api/teams/10012/projects/12687/branches/199322/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10012&pid=12687&bid=199322)
 # parkinglot-problem
 
 Stack Used: Typescript and node (ts-node)
